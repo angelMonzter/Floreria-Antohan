@@ -1,0 +1,41 @@
+html{
+	padding: 0;
+}
+body{
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+#top-bar{
+	background-color: white;
+}
+#ya{
+	background-color: white;
+}
+.fondo{
+	
+}
+.green{
+	color: #2EB872;
+}
+.Racing{
+	font-family: 'Poiret One', cursive;
+}
+#logo{
+	width: 200px;
+}
+#form{
+	margin-top: 70px;
+	margin-right: 150px;
+}
+#link-sesion{
+	padding-top: 45px;
+}
+#boton{
+	color:#2EB872;
+}
+#ok{
+	background-color: #f767c5;
+}
+.rosa{
+	color:#FF5D6E;
+}

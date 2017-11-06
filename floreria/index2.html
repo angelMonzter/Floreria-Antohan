@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Floreria Antohan</title>
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link href='css/foundation-icons.css' rel='stylesheet' type='text/css'>
+	<script>window.$ = window.jQuery = require('js/');</script>
+	<script src="js/jquery.flipster.min.js"></script>
+	<link rel="stylesheet" href="css/jquery.flipster.css">
+	<link rel="stylesheet" href="css/estilos2.css">
+	<link rel="icon" href="img/rosa_icono.ico">
+	<link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+</head>
+<body>
+<script> require('./index.js') </script>
+<script>
+	function findMe(){
+		var output = document.getElementById('map');
+
+		if (navigation.geolocation){
+			output.innerHTML = "<p>tu navegador si lo soporta</p>";
+		}else{
+			output.innerHTML ="<p>tu navegador no lo soporta</p>";
+		}
+
+		function localizacion(posicion){
+			var latitude = posicion.coords.latitude;
+			var longitude = posicion.coords.longitude;
+
+			output.innerHTML ="<p>Latitud:" +latitude+ "<br /> Longitude:" +latitude+"</p>";
+		}
+
+		function error(){
+			output.innerHTML = "<p>no se pudo obtener tu Ubicacion</p>"
+		}
+
+		navigator.geolocation.getCurrentPosition(localizacion,error);
+	}
+</script>
+<!--barra de navegacion-->
+<div class="top-bar Racing" id="top-bar">
+	<div class="row">
+		<div class="top-bar-left">
+			<ul class="dropdown menu" id="ya" data-dropdown-menu>
+				<li class="menu-text" id="logo"><img src="img/logo.jpg" alt=""></li>
+				<li><a href="index.html">Registro</a></li>
+				<li><a href="">Compras</a></li>
+			</ul>
+		</div>
+		<div id="link-sesion" class="top-bar-right">
+			<p><a href="" class="rosa">Cierra Sesion</a></p>
+		</div>
+	</div>
+</div>
+<!--barra de navegacion-->
+
+<br>
+
+<div class="row medium-uncollapse large-collapse">
+    <div class="small-6 columns">
+    	<div id="boton" class="large-6 columns">
+		   <button href="" id="ok" class="button small Racing" onclick="findMe()">Ubicacion</button>
+		</div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.9463984712997!2d-99.66057168572048!3d19.284697050392122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd89be45644b1d%3A0xd2c43ef190506fc8!2sFlorer%C3%ADa+Antohan!5e0!3m2!1ses-419!2smx!4v1508726939896" width="550" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="small-6 columns Racing">
+        <h4 class="Racing">Pedido</h4>
+        <form>
+		  <div class="row">
+		    <div class="large-12 columns">
+		      <label>Nombre:
+		        <input type="text" placeholder="Nombre" />
+		      </label>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="large-6 columns">
+		      <label>Correo:
+		        <input type="email" placeholder="Correo" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Telefono:
+		        <input type="text" placeholder="Telefono" />
+		      </label>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="large-12 columns">
+		      <label>Direccion:
+		        <input type="text" placeholder="Direccion" />
+		      </label>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="large-6 columns">
+		      <label>Pedido:
+		        <input type="text" placeholder="Pedido" />
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Costo:
+		        <input type="text" placeholder="Costo(cotizacion)" />
+		      </label>
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div id="boton" class="large-6 columns">
+		      <a href="" id="ok" class="button small Racing">Guardar</a>
+		    </div>
+		    <div class="large-6 columns rosa">
+		      <a href="" id="ok" class="button small Racing">Imprimir</a>
+		    </div>
+		  </div>
+		</form>
+    </div>
+</div>
+
+<div class="row column Racing">
+	<hr>
+	<ul class="menu rosa" id="footer">
+		<li>Floreria Antohan</li>
+		<li class="float-right">Copyright 2017 MonzterSoftware</li>
+	</ul>
+</div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/vendor/foundation.js"></script>
+</body>
+</html>
