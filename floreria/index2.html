@@ -17,41 +17,134 @@
 <body>
 <script> require('./index.js') </script>
 <script>
-	function findMe(){
-		var output = document.getElementById('map');
+function valida(e){
+    tecla = (document.all) ? e.keyCode : e.which;
 
-		if (navigation.geolocation){
-			output.innerHTML = "<p>tu navegador si lo soporta</p>";
-		}else{
-			output.innerHTML ="<p>tu navegador no lo soporta</p>";
-		}
-
-		function localizacion(posicion){
-			var latitude = posicion.coords.latitude;
-			var longitude = posicion.coords.longitude;
-
-			output.innerHTML ="<p>Latitud:" +latitude+ "<br /> Longitude:" +latitude+"</p>";
-		}
-
-		function error(){
-			output.innerHTML = "<p>no se pudo obtener tu Ubicacion</p>"
-		}
-
-		navigator.geolocation.getCurrentPosition(localizacion,error);
-	}
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla==8){
+        return true;
+    }
+        
+    // Patron de entrada, en este caso solo acepta numeros
+    patron =/[0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
 </script>
+    <script>
+function sololetras(e){
+  key=e.keyCode || e.which;
+  teclado=String.fromCharCode(key).toLowerCase();
+  letras=" abcdefghijklmnñopqrstuvwxyz";
+  especiales="8-37-38-46-164";
+  teclado_especial=false;
+  
+  for(var i in especiales){
+    if(key==especiales[i]){
+    teclado_especial=true; break;
+    }
+  }
+  if(letras.indexOf(teclado)==-1 && !teclado_especial){
+    return false;
+  }
+}
+</script>
+
+<script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      var mostrar = function(){
+      		var direc = document.getElementById("pac-input").value;
+
+      		document.getElementById("2").innerHTML = direc;
+  		}
+
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
 <!--barra de navegacion-->
 <div class="top-bar Racing" id="top-bar">
 	<div class="row">
 		<div class="top-bar-left">
 			<ul class="dropdown menu" id="ya" data-dropdown-menu>
 				<li class="menu-text" id="logo"><img src="img/logo.jpg" alt=""></li>
-				<li><a href="index.html">Registro</a></li>
-				<li><a href="">Compras</a></li>
+				<li><a href="index.html" class="rosa">Registro</a></li>
+				<li><a href="index5.html" class="rosa">Compras</a></li>
+        <li><a href="index4.html" class="rosa">Administrador</a></li>
 			</ul>
 		</div>
-		<div id="link-sesion" class="top-bar-right">
-			<p><a href="" class="rosa">Cierra Sesion</a></p>
+		<div id="link-sesion" class="top-bar-right ">
+			<p><a href="index.html" class="rosa">Cierra Sesion</a></p>
 		</div>
 	</div>
 </div>
@@ -60,59 +153,65 @@
 <br>
 
 <div class="row medium-uncollapse large-collapse">
-    <div class="small-6 columns">
-    	<div id="boton" class="large-6 columns">
-		   <button href="" id="ok" class="button small Racing" onclick="findMe()">Ubicacion</button>
-		</div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.9463984712997!2d-99.66057168572048!3d19.284697050392122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd89be45644b1d%3A0xd2c43ef190506fc8!2sFlorer%C3%ADa+Antohan!5e0!3m2!1ses-419!2smx!4v1508726939896" width="550" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map" class="small-6 columns">
+	
     </div>
+    <form action="php/pedido.php" method="POST" autocomplete="off">
     <div class="small-6 columns Racing">
         <h4 class="Racing">Pedido</h4>
-        <form>
 		  <div class="row">
 		    <div class="large-12 columns">
 		      <label>Nombre:
-		        <input type="text" placeholder="Nombre" />
+		        <input type="text" placeholder="Nombre" name="nombre" onkeypress="return sololetras(event)" />
 		      </label>
 		    </div>
 		  </div>
 		  <div class="row">
 		    <div class="large-6 columns">
 		      <label>Correo:
-		        <input type="email" placeholder="Correo" />
+		        <input type="email" placeholder="Correo" name="correo" />
 		      </label>
 		    </div>
 		    <div class="large-6 columns">
 		      <label>Telefono:
-		        <input type="text" placeholder="Telefono" />
+		        <input type="text" placeholder="Telefono" name="telefono" maxlength="10"  onkeypress="return valida(event)" />
 		      </label>
 		    </div>
 		  </div>
 		  <div class="row">
-		    <div class="large-12 columns">
+		    <div class="large-6 columns">
 		      <label>Direccion:
-		        <input type="text" placeholder="Direccion" />
+		        <div id="2"></div>
+					<div id="boton">
+			     		 <a  id="ok" class="button tiny Racing" onclick="mostrar()">Direccion</a>
+			    	</div>
+		      </label>
+		    </div>
+		    <div class="large-6 columns">
+		      <label>Detalles:
+		        <input type="text" placeholder="Detalles de Direccion" />
 		      </label>
 		    </div>
 		  </div>
 		  <div class="row">
 		    <div class="large-6 columns">
 		      <label>Pedido:
-		        <input type="text" placeholder="Pedido" />
+		        <input type="text" placeholder="Pedido" name="pedido" />
 		      </label>
 		    </div>
 		    <div class="large-6 columns">
 		      <label>Costo:
-		        <input type="text" placeholder="Costo(cotizacion)" />
+		        <input type="text" placeholder="Costo(cotizacion)" name="costo" />
 		      </label>
 		    </div>
 		  </div>
 		  <div class="row">
 		    <div id="boton" class="large-6 columns">
-		      <a href="" id="ok" class="button small Racing">Guardar</a>
+		       <a  id="ok" class="button small Racing" >Imprimir</a>
 		    </div>
 		    <div class="large-6 columns rosa">
-		      <a href="" id="ok" class="button small Racing">Imprimir</a>
+		       <input  id="ok" class="button small Racing" type="submit" value="Guardar">
 		    </div>
 		  </div>
 		</form>
@@ -127,6 +226,8 @@
 	</ul>
 </div>
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIxpzsUvZjxrac4X47xVgm8xVAldC7dsM&libraries=places&callback=initAutocomplete"
+         async defer></script>
 <script src="js/vendor/foundation.js"></script>
 </body>
 </html>
