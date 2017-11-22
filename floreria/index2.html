@@ -14,7 +14,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 </head>
-<body>
+
+    <script language="JavaScript">  
+    function calcular()
+    {
+        var precio=  parseFloat( document.getElementById("u1").value);   
+        var tax = parseFloat( document.getElementById("c1").value);            
+        var total = document.getElementById("total").value = precio*tax;              
+    }   
+</script> 
+
+<body onload="calcular();"">
+
 <script> require('./index.js') </script>
 <script>
 function valida(e){
@@ -59,8 +70,7 @@ function sololetras(e){
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
       var mostrar = function(){
-      		var direc = document.getElementById("pac-input").value;
-
+      	var direc = document.getElementById("pac-input").value;
       		document.getElementById("2").innerHTML = direc;
   		}
 
@@ -132,6 +142,8 @@ function sololetras(e){
       }
 
     </script>
+
+ 
 <!--barra de navegacion-->
 <div class="top-bar Racing" id="top-bar">
 	<div class="row">
@@ -139,8 +151,8 @@ function sololetras(e){
 			<ul class="dropdown menu" id="ya" data-dropdown-menu>
 				<li class="menu-text" id="logo"><img src="img/logo.jpg" alt=""></li>
 				<li><a href="index.html" class="rosa">Registro</a></li>
-				<li><a href="index5.html" class="rosa">Compras</a></li>
-        <li><a href="index4.html" class="rosa">Administrador</a></li>
+				<li><a href="index5.php" class="rosa">Ventas del día</a></li>
+        <li><a href="index4.php" class="rosa">Administrador</a></li>
 			</ul>
 		</div>
 		<div id="link-sesion" class="top-bar-right ">
@@ -151,13 +163,13 @@ function sololetras(e){
 <!--barra de navegacion-->
 
 <br>
-
+<form action="php/pedido.php" method="POST" autocomplete="off">
 <div class="row medium-uncollapse large-collapse">
-	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	<input id="pac-input" class="controls" type="text" name="direccion" placeholder="Search Box" >
     <div id="map" class="small-6 columns">
 	
     </div>
-    <form action="php/pedido.php" method="POST" autocomplete="off">
+    
     <div class="small-6 columns Racing">
         <h4 class="Racing">Pedido</h4>
 		  <div class="row">
@@ -170,7 +182,7 @@ function sololetras(e){
 		  <div class="row">
 		    <div class="large-6 columns">
 		      <label>Correo:
-		        <input type="email" placeholder="Correo" name="correo" />
+		        <input type="email" placeholder="Correo" name="correo"  />
 		      </label>
 		    </div>
 		    <div class="large-6 columns">
@@ -182,30 +194,49 @@ function sololetras(e){
 		  <div class="row">
 		    <div class="large-6 columns">
 		      <label>Direccion:
-		        <div id="2"></div>
-					<div id="boton">
-			     		 <a  id="ok" class="button tiny Racing" onclick="mostrar()">Direccion</a>
+		        <div id="2" ></div>
+					<div id="boton" >
+			     		 <a  id="ok" class="button tiny Racing"  onclick="mostrar()">Direccion </a>
 			    	</div>
 		      </label>
 		    </div>
 		    <div class="large-6 columns">
 		      <label>Detalles:
-		        <input type="text" placeholder="Detalles de Direccion" />
+		        <input type="text" placeholder="Detalles de Direccion" name="detallesd" />
 		      </label>
 		    </div>
 		  </div>
 		  <div class="row">
 		    <div class="large-6 columns">
-		      <label>Pedido:
-		        <input type="text" placeholder="Pedido" name="pedido" />
+		      <label>Detalles:
+		        <input type="text" placeholder="Detalles del Pedido" name="detallesp" />
 		      </label>
 		    </div>
 		    <div class="large-6 columns">
-		      <label>Costo:
-		        <input type="text" placeholder="Costo(cotizacion)" name="costo" />
+		      <label>Unidades:
+		        <input type="text" placeholder="Unidades" name="unidades" id="u1" onkeyup="calcular();"/>
 		      </label>
 		    </div>
 		  </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label>Costo:
+            <input type="text" placeholder="Costo" name="costo" id="c1" onkeyup="calcular();" />
+          </label>
+        </div>
+        <div class="large-6 columns">
+          <label>Total:
+            <input type="text" placeholder="Total" name="total" id="total"  readonly="0" value="0" />
+          </label>
+        </div>
+     </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label>Fecha de Entrega:
+            <input type="date" placeholder="Fecha" name="fecha"/>
+          </label>
+        </div>
+     </div>
 		  <div class="row">
 		    <div id="boton" class="large-6 columns">
 		       <a  id="ok" class="button small Racing" >Imprimir</a>

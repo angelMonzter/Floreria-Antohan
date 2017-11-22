@@ -1,4 +1,6 @@
-
+<?php
+$conexion=mysqli_connect('localhost', 'root', '', 'floreria' );
+?>
 
 <!doctype html>
 <html class="no-js" lang="es">
@@ -30,23 +32,6 @@
 </script>
 
 <!--barra de navegacion-->
-<!--barra de navegacion-->
-<!doctype html>
-<body>
-<script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-2195009-2', 'auto');
-      ga('send', 'pageview');
-
-      ga('create', 'UA-2195009-27', 'auto', {name: "foundation"});
-      ga('foundation.send', 'pageview');
-</script>
-
-<!--barra de navegacion-->
 <div class="top-bar" id="top-bar">
 	<div class="row">
 		<div class="top-bar-left">
@@ -62,6 +47,7 @@
 <!--barra de navegacion-->
 
 <div class="row">
+
 	<h5>Empleados</h5>
 	<br>
 	<table>
@@ -73,35 +59,48 @@
 	      <th width="150">Correo</th>
 	      <th width="150">Telefono</th>
 	      <th width="150">Direccion</th>
+	      <td width="50">Eliminar</td>
 	    </tr>
 	  </thead>
-	  <?php
-	  include("conexion.php");
-	  conectar();
-	  
+
+<?php
+	$sql="SELECT nombre, apellido, edad, correo, telefono, direccion from registro";
+		$result=mysqli_query($conexion,$sql);
+
+		while($mostrar=mysqli_fetch_array($result)){
 ?>
 	  <tbody>
-	    <tr>
-	      <td>Content Goes Here</td>
-	      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-	      <td>Content Goes Here</td>
-	      <td>Content Goes Here</td>
-	    </tr>
-	    <tr>
-	      <td>Content Goes Here</td>
-	      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-	      <td>Content Goes Here</td>
-	      <td>Content Goes Here</td>
-	    </tr>
-	    <tr>
-	      <td>Content Goes Here</td>
-	      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-	      <td>Content Goes Here</td>
-	      <td>Content Goes Here</td>
-	    </tr>
+	      <td><?php echo $mostrar['nombre']?></td>
+	      <td><?php echo $mostrar['apellido']?></td>
+	      <td><?php echo $mostrar['edad']?></td>
+	      <td><?php echo $mostrar['correo']?></td>
+	      <td><?php echo $mostrar['telefono']?></td>
+	      <td><?php echo $mostrar['direccion']?></td>
 	  </tbody>
+	  <?php
+	  }
+	  ?>
 	</table>
 </div>
+
+<div class="row">
+	<h5>Cambiar llave</h5>
+		  <div class="small-2 large-4 columns">
+			<label for="">Nueva llave:
+				<input type="text" placeholder="nueva llave">
+			</label>
+		  </div>
+		  <div class="small-4 large-4 columns">
+			<label for="">Confirmar llave: 
+				<input type="text" placeholder="confirmar llave">
+			</label>
+		  </div>
+		  <div class="small-6 large-4 columns">
+			<label for="">Correo administrativo: 
+				<input type="text" placeholder="correo administrativo">
+			</label>
+		  </div>
+	  </div>
 
 <div class="row column">
 	<hr>

@@ -1,5 +1,9 @@
 
-
+	  <?php
+	  include("conexion.php");
+	  conectar();
+	  
+?>
 <!doctype html>
 <html class="no-js" lang="es">
 <head>
@@ -75,11 +79,7 @@
 	      <th width="150">Direccion</th>
 	    </tr>
 	  </thead>
-	  <?php
-	  include("conexion.php");
-	  conectar();
-	  
-?>
+
 	  <tbody>
 	    <tr>
 	      <td>Content Goes Here</td>

@@ -3,9 +3,9 @@
 function conectar(){
 	global $conex;
 	$usr="root";
-	$psw="root";
+	$psw="";
 	$serv="localhost";
-	$bd="Floreria Antohan";
+	$bd="floreria";
 
 	$conex=mysql_connect($serv, $usr, $psw) or die(mysql_error());
 

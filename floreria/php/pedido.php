@@ -7,13 +7,20 @@ $nombre= $_POST['nombre'];
 $correo=$_POST['correo'];
 $telefono=$_POST['telefono'];
 $direccion=$_POST['direccion'];
-$pedido=$_POST['pedido'];
+$detallesd=$_POST['detallesd'];
+$unidades=$_POST['unidades'];
+$detallesp=$_POST['detallesp'];
 $costo=$_POST['costo'];
+$total=$_POST['total'];
+$fecha=$_POST['fecha'];
 
 
+$usuariog=($_GET['usuariog']);
+echo $usuariog;
 
+/*
 //$encrip=password_hash($contrasena,PASSWORD_DEFAULT);
-if (empty($nombre && $correo && $telefono && $direccion && $pedido && $costo)) {
+if (empty($nombre && $correo && $telefono && $direccion && $total && $costo && $detallesd && $detallesp && $unidades && $fecha)) {
 	?>
 	<script type="text/javascript">
 		alert("Favor de llenar todos los campos...");
@@ -21,9 +28,6 @@ if (empty($nombre && $correo && $telefono && $direccion && $pedido && $costo)) {
 	</script>
 	<?php
 }else{
-
-
-
 //include 'AES.php';
  //$contra=SED:: encryption($contrasena);
 
@@ -43,7 +47,6 @@ if (empty($nombre && $correo && $telefono && $direccion && $pedido && $costo)) {
 	<?php
 
 }
-
 mysql_close($conex);
-
+*/
 ?>

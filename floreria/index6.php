@@ -1,4 +1,7 @@
 
+<?php
+	$conexion=mysqli_connect('localhost','root','','floreria');
+?>
 
 <!doctype html>
 <html class="no-js" lang="es">
@@ -62,44 +65,41 @@
 <!--barra de navegacion-->
 
 <div class="row">
-	<h5>Empleados</h5>
-	<br>
+	<h5>Pedidos</h5>
 	<table>
 	  <thead>
 	    <tr>
+	      <th width="200">Id Pedido</th>
 	      <th width="200">Nombre</th>
-	      <th width="150">Apellido</th>
-	      <th width="90">Edad</th>
 	      <th width="150">Correo</th>
 	      <th width="150">Telefono</th>
-	      <th width="150">Direccion</th>
+	      <td width="200">Direccion</td>
+	      <td width="50">Pedido</td>
+	      <td width="50">Costo</td>
+	      
+
 	    </tr>
 	  </thead>
+
 	  <?php
-	  include("conexion.php");
-	  conectar();
+	 $sql="SELECT * FROM pedido INNER JOIN `registro`";
+		$result=mysqli_query($conexion,$sql);
+
+		while($mostrar=mysqli_fetch_array($result)){
 	  
-?>
+	  ?>
 	  <tbody>
-	    <tr>
-	      <td>Content Goes Here</td>
-	      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-	      <td>Content Goes Here</td>
-	      <td>Content Goes Here</td>
-	    </tr>
-	    <tr>
-	      <td>Content Goes Here</td>
-	      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-	      <td>Content Goes Here</td>
-	      <td>Content Goes Here</td>
-	    </tr>
-	    <tr>
-	      <td>Content Goes Here</td>
-	      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-	      <td>Content Goes Here</td>
-	      <td>Content Goes Here</td>
-	    </tr>
+	 	<td><?php echo $mostrar['id_pedido']?></td>
+	    <td><?php echo $mostrar['nombre']?></td>
+	    <td><?php echo $mostrar['correo']?></td>
+	    <td><?php echo $mostrar['telefono']?></td>
+	    <td><?php echo $mostrar['direccion']?></td>
+	    <td><?php echo $mostrar['pedido']?></td>
+	    <td><?php echo $mostrar['costo']?></td>
 	  </tbody>
+	  <?php
+	}
+	  ?>
 	</table>
 </div>
 

@@ -17,7 +17,7 @@ $llave=$_POST['llave'];
 
 $llave1='Antohan';
 
-$encrip=password_hash($contrasena,PASSWORD_DEFAULT);
+//$encrip=password_hash($contrasena,PASSWORD_DEFAULT);
 if (empty($nombre && $apellido && $edad && $correo && $telefono && $usuario && $contrasena && $direccion && $llave)) {
 	?>
 	<script type="text/javascript">
@@ -32,7 +32,10 @@ if (empty($nombre && $apellido && $edad && $correo && $telefono && $usuario && $
 //include 'AES.php';
  //$contra=SED:: encryption($contrasena);
 
-	$consulta=mysql_query("insert into registro ('id_registro', 'nombre', 'apellido', 'genero', 'edad', 'correo', 'telefono', 'usuario', 'contrasena', 'direccion', 'llave') values ('$nombre', '$apellido', '$genero', '$edad', '$correo', '$telefono', '$usuario', 'contrasena', '$direccion','$llave' )", $conex) or die(mysql_error($consulta));
+	//$consulta=mysql_query("insert into registro (`id_registro`,`nombre`,`apellido`,`fecha_na`,`correo`,`contrasena`) values(NULL,'$nombre','$apellidos','$fecha_na','$correo','$contra')",$conex) or die ("Error");
+
+	//$consulta=mysql_query("insert into registro (`id_registro`,`nombre`,`apellido`,`genero`,`edad`,`telefono`, `usuario`, `contrasena`, `direccion`, `llave`) values(NULL,'$nombre','$apellidos','$fecha_na','$correo','$contra')",$conex) or die ("Error");
+$consulta=mysql_query("insert into registro (`id_registro`, `nombre`, `apellido`, `genero`, `edad`, `correo`, `telefono`, `usuario`, `contrasena`, `direccion`, `llave`) values (NULL, '$nombre', '$apellido', '$genero', '$edad', '$correo', '$telefono','$usuario', '$contrasena', '$direccion', '$llave')",$conex) or die (mysql_error($consulta));
 
 
 	?>
@@ -57,5 +60,6 @@ if (empty($nombre && $apellido && $edad && $correo && $telefono && $usuario && $
 }
 
 mysql_close($conex);
+
 
 ?>
