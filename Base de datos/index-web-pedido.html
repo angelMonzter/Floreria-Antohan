@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Floreria Antohan</title>
+	<link rel="stylesheet" href="css/foundation.min.css">
+	<link href='css/foundation-icons.css' rel='stylesheet' type='text/css'>
+	<script>window.$ = window.jQuery = require('js/jquery.js');</script>
+	<script src="js/jquery.flipster.min.js"></script>
+	<link rel="stylesheet" href="css/estilosweb.css">
+	<link rel="icon" href="img/rosa_icono.ico">
+	<link href="https://fonts.googleapis.com/css?family=Racing+Sans+One" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+</head>
+<body>
+
+<div class="row" id="logo">
+    <img align="center" src="img/logo.jpg" alt="">
+</div>
+
+
+<!--barra de navegacion-->
+<div align="center" class="top-bar" id="top-bar">
+	<div class="">
+		<ul class="dropdown menu" id="ya" data-dropdown-menu>
+	        <li><a href="index-web.html" class="black Racing">Inicio</a></li>
+	        <li><a href="catalogo.html" class="black Racing">Catalogo</a></li>
+	        <li><a href="index-web-pedido.html" class="black Racing">Pedido</a></li>
+	        <li><a href="index-web-registro.html" class="sesion black Racing">Registrarse</a></li>
+        </ul>
+    </div>
+</div>
+<!--formularios dee pedidos-->
+<br>
+
+<div class="row medium-uncollapse">
+	<!--direccion peincipal-->
+	<div id="ejemplo2" class="large-6 columns">
+		<h4>Dirección pricipal</h4>  
+		<label>Nombre Completo Del Comprador:
+        	<input type="text" placeholder="Nombre"/>
+	    </label>
+	    <label>Teléfono:
+	        <input type="text" placeholder="Teléfono"/>
+	    </label>
+	    <label>Dirección De Correo Electrónico:
+	    	<input type="text" placeholder="Dirección"/>
+	    </label>
+	    <label>Rangos De Hora De Entrega:
+		    <select name="rango">
+		       	<option value="Hombre">9:00-12:00</option>
+		      	<option value="Mujer">12:00-6:00</option>
+		    </select  >
+	    </label>
+	    <label>Fecha de Entrega:
+            <input type="date" placeholder="Fecha" name="fecha"/>
+          </label>
+	</div>
+	<!-- direccion diferente-->
+	<div class="large-6 columns">
+		<h4>¿Enviar a una dirección diferente?</h4> 
+		<label>Nombre Del Destinatario
+	        <input type="text" placeholder="Nombre Completo"/>
+	    </label>
+		<label>Empresa(Opcional)
+	        <input type="text" placeholder="Empresa/Local"/>
+	    </label>
+	    <label>Provincia
+	      <input type="text" placeholder="Colonia">
+	    </label>
+	    <label>Dirección
+	      <input type="text" placeholder="Calle y Número">
+	    </label>
+	    <label>Codigo Postal
+	      	<input type="text" placeholder="Codigo Postal">
+	    </label>
+	    <div class="large-3 columns" id="boton">
+	    		<input class="button Racing" type="submit" value="Enviar" id="ok">
+	  	</div>
+	</div>
+</div>
+
+
+
+<!--formularios dee pedidos-->
+
+
+<div class="row column">
+	<hr>
+	<ul class="menu rosa" id="footer">
+		<li class="Racing">Floreria Antohan</li>
+		<li class="float-right Racing">Copyright 2017 MonzterSoftware</li>
+	</ul>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+<script>
+      $(document).foundation();
+    </script>
+</body>
+</html>
